@@ -2,6 +2,7 @@ package com.prueba.libraryservice.domain.entities;
 
 import com.fasterxml.jackson.annotation.JsonBackReference;
 import com.prueba.libraryservice.domain.entities.base.baseEntity;
+import jakarta.persistence.CascadeType;
 import jakarta.persistence.Entity;
 import jakarta.persistence.OneToMany;
 
@@ -12,7 +13,7 @@ public class Publisher extends baseEntity {
 
     private String name;
     private String address;
-    @OneToMany(mappedBy = "publisher")
+    @OneToMany(mappedBy = "publisher",cascade = CascadeType.ALL, orphanRemoval = true)
     @JsonBackReference
     private List<Book> books;
 

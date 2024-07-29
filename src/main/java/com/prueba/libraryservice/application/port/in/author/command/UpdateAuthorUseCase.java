@@ -2,7 +2,7 @@ package com.prueba.libraryservice.application.port.in.author.command;
 
 import com.prueba.libraryservice.domain.entities.Author;
 
-public interface CreateAuthorUseCase {
+public interface UpdateAuthorUseCase {
 
-    Author createAuthor(String name,String lastname);
+    Author updateAuthor(Long id, String name, String lastName);
 }

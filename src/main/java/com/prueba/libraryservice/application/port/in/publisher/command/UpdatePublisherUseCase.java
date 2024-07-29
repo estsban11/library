@@ -2,7 +2,7 @@ package com.prueba.libraryservice.application.port.in.publisher.command;
 
 import com.prueba.libraryservice.domain.entities.Publisher;
 
-public interface CreatePublisherUseCase {
+public interface UpdatePublisherUseCase {
 
-    Publisher createPublisher(String name, String address);
+    Publisher updatePublisher(Long id,String name, String address );
 }
