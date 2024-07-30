@@ -4,6 +4,11 @@
 
 Library Service es una aplicación basada en Spring Boot que proporciona un servicio RESTful para la gestión de una biblioteca. Utiliza JWT para la autenticación y autorización, y almacena los datos en una base de datos MySQL. La aplicación está empaquetada y desplegada utilizando Docker y Docker Compose.
 
+Si ejecuta el DockerCompose se estara creando dos contenedores:
+
+Spring-container: en base a una imagen alojada en dockerhub y representa el backend
+Mysql-container: una imagen de mysql que representa nuesta base de datos
+
 ## Tecnologías Utilizadas
 
 - Java 17
