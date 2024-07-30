@@ -1,12 +1,8 @@
 package com.prueba.libraryservice.adapter.in.web;
 
 import com.prueba.libraryservice.adapter.dtos.CreatePublisherRequest;
-import com.prueba.libraryservice.adapter.dtos.UpdateAuthorRequest;
-import com.prueba.libraryservice.adapter.dtos.UpdatePublisherRequest;
 import com.prueba.libraryservice.application.facade.PublisherUseCases;
-import com.prueba.libraryservice.application.port.in.publisher.command.CreatePublisherUseCase;
 import com.prueba.libraryservice.domain.commons.Response.Response;
-import com.prueba.libraryservice.domain.entities.Author;
 import com.prueba.libraryservice.domain.entities.Publisher;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
@@ -42,7 +38,7 @@ public class PublisherCommandController {
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Response<Publisher>> updatePublisher(@PathVariable Long id, @RequestBody UpdatePublisherRequest request) {
+    public ResponseEntity<Response<Publisher>> updatePublisher(@PathVariable Long id, @RequestBody CreatePublisherRequest request) {
 
         var publisher = publisherUseCases.getUpdatePublisherUseCase().updatePublisher(id, request.getName(),request.getAddress());
         return  new ResponseEntity<>(new Response<>(null,HttpStatus.OK.value(),publisher),HttpStatus.OK);

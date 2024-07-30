@@ -1,21 +1,21 @@
 package com.prueba.libraryservice.adapter.in.web;
 
 import com.prueba.libraryservice.adapter.dtos.CreateAuthorRequest;
-import com.prueba.libraryservice.adapter.dtos.UpdateAuthorRequest;
-import com.prueba.libraryservice.adapter.dtos.UpdateBookRequest;
 import com.prueba.libraryservice.application.facade.AuthorUseCases;
-import com.prueba.libraryservice.application.port.in.author.command.CreateAuthorUseCase;
 import com.prueba.libraryservice.domain.commons.Response.Response;
 import com.prueba.libraryservice.domain.entities.Author;
-import com.prueba.libraryservice.domain.entities.Book;
+import jakarta.validation.Valid;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
+import org.springframework.validation.annotation.Validated;
 import org.springframework.web.bind.annotation.*;
+
 
 import java.util.List;
 
 @RestController
 @RequestMapping("/author")
+@Validated
 public class AuthorCommandController {
 
     private final AuthorUseCases authorUseCases;
@@ -32,19 +32,19 @@ public class AuthorCommandController {
     }
 
     @GetMapping("/{id}")
-    public  ResponseEntity<Response<Author>> getAuthorById(@PathVariable Long id){
+    public  ResponseEntity<Response<Author>> getAuthorById(@Valid @PathVariable Long id) throws Exception{
         var author = authorUseCases.getGetAuthorByIdUseCase().getAuthorById(id);
         return new ResponseEntity<>(new Response<>(null,HttpStatus.OK.value(), author),HttpStatus.OK);
     }
     @PostMapping()
-    public ResponseEntity<Response<Author>> createAuthor(@RequestBody CreateAuthorRequest author){
+    public ResponseEntity<Response<Author>> createAuthor(@Valid @RequestBody CreateAuthorRequest author){
 
         var newAuthor = authorUseCases.getCreateAuthorUseCase().createAuthor(author.getName(),author.getLastname());
         return new ResponseEntity<>(new Response<>(null, HttpStatus.CREATED.value(),newAuthor),HttpStatus.CREATED) ;
     }
 
     @PutMapping("/{id}")
-    public ResponseEntity<Response<Author>> updateBook(@PathVariable Long id, @RequestBody UpdateAuthorRequest request) {
+    public ResponseEntity<Response<Author>> updateBook(@PathVariable Long id, @Valid @RequestBody CreateAuthorRequest request) {
 
         var author = authorUseCases.getUpdateAuthorUseCase().updateAuthor(id, request.getName(),request.getLastname());
         return  new ResponseEntity<>(new Response<>(null,HttpStatus.OK.value(),author),HttpStatus.OK);

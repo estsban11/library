@@ -37,7 +37,7 @@ public class BookCommandController {
     @PostMapping
     public ResponseEntity<Response<Book>> createBook(@RequestBody CreateBookRequest request) {
 
-        var book = bookUseCases.getCreateBookUseCase().createBook(request.getTitle(),request.getAuthor_id(),request.getPublisher_id());
+        var book = bookUseCases.getCreateBookUseCase().createBook(request.getTitle(),request.getImage(),request.getAuthor_id(),request.getPublisher_id());
         return  new ResponseEntity<>(new Response<Book>(null,HttpStatus.CREATED.value(),book),HttpStatus.CREATED);
     }
 

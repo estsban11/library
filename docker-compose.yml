@@ -12,7 +12,7 @@ services:
       - mysql-data:/var/lib/mysql
 
   spring-app:
-    image: estsban1102/backend-library:0.0.1
+    image: estsban1102/backend-library:0.0.2
     container_name: spring-container
     ports:
       - "8080:8080"

@@ -12,6 +12,7 @@ import com.prueba.libraryservice.domain.entities.Publisher;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.Optional;
 
 @Service
@@ -30,7 +31,7 @@ public class BookCommandService implements CreateBookUseCase, UpdateBookUseCase,
     }
 
     @Override
-    public Book createBook(String title, Long authorId, Long publisherId) {
+    public Book createBook(String title, String image, Long authorId, Long publisherId) {
 
         Optional<Author> author = authorRepository.findById(authorId);
         if (author.isEmpty()) {
@@ -46,6 +47,8 @@ public class BookCommandService implements CreateBookUseCase, UpdateBookUseCase,
         book.setTitle(title);
         book.setAuthor(author.get());
         book.setPublisher(publisher.get());
+        book.setImage(image);
+        book.setPublication_date(new Date());
 
         return bookCommandRepository.save(book);
     }

@@ -4,5 +4,5 @@ import com.prueba.libraryservice.domain.entities.Book;
 
 public interface CreateBookUseCase {
 
-    Book createBook(String title, Long authorId, Long publisherId);
+    Book createBook(String title, String image, Long authorId, Long publisherId);
 }
